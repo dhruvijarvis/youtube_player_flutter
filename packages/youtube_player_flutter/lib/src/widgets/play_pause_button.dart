@@ -83,11 +83,17 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
           child: InkWell(
             borderRadius: BorderRadius.circular(50.0),
             onTap: () {
-              setState(() {
-                _controller.value.isPlaying
-                    ? _controller.startPlaying = false
-                    : _controller.startPlaying = true;
-              });
+              if (_controller.value.isPlaying) {
+                _controller.startPlaying = false;
+              }
+              else {
+                _controller.startPlaying = true;
+                Future.delayed(Duration(seconds: 1), () {
+                  if (!_controller.value.isPlaying) {
+                    _controller.play();
+                  }
+                });
+              }
             },
             // child: AnimatedIcon(
             //   icon: AnimatedIcons.play_pause,
@@ -96,22 +102,22 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
             //   size: 60.0,
             // ),
             child: Icon(
-            Icons.play_circle_fill,
-            color: Colors.white,
-            size: 60.0,
+              Icons.play_circle_fill,
+              color: Colors.white,
+              size: 60.0,
+            ),
           ),
         ),
-      ),
-    );
+      );
     }
     if (_controller.value.hasError) return const SizedBox();
     return widget.bufferIndicator ??
-    Container(
-    width: 70.0,
-    height: 70.0,
-    child: const CircularProgressIndicator(
-    valueColor: AlwaysStoppedAnimation(Colors.white),
-    ),
-    );
+        Container(
+          width: 70.0,
+          height: 70.0,
+          child: const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(Colors.white),
+          ),
+        );
   }
 }
