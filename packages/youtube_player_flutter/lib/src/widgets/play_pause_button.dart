@@ -86,7 +86,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
               setState(() {
                 _controller.value.isPlaying
                     ? _controller.startPlaying = false
-                    : _controller.startPlaying = true
+                    : _controller.startPlaying = true;
               });
             },
             // child: AnimatedIcon(
