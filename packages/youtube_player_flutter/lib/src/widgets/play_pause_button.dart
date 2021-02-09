@@ -71,8 +71,9 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   Widget build(BuildContext context) {
     final _playerState = _controller.value.playerState;
     print("playpausebutton build ${_playerState}");
-    print("playpausebutton ${_controller.flags.autoPlay}");
-    print("playpausebutton ${_controller.value.isReady}");
+    print("playpausebutton autoplay ${_controller.flags.autoPlay}");
+    print("playpausebutton ready ${_controller.value.isReady}");
+    print("playpausebutton error ${_controller.value.hasError}");
     print("--------------------------------------");
     if ((!_controller.flags.autoPlay && _controller.value.isReady) ||
         _playerState == PlayerState.playing ||
@@ -107,11 +108,11 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
             //   color: Colors.white,
             //   size: 60.0,
             // ),
-            // child: Icon(
-            //   Icons.play_circle_fill,
-            //   color: Colors.white,
-            //   size: 60.0,
-            // ),
+            child: Icon(
+              Icons.play_circle_fill,
+              color: Colors.white,
+              size: 60.0,
+            ),
           ),
         ),
       );
