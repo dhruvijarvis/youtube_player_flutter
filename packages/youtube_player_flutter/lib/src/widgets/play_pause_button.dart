@@ -46,9 +46,9 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
     _controller = YoutubePlayerController.of(context);
     if (_controller == null) {
       assert(
-      widget.controller != null,
-      '\n\nNo controller could be found in the provided context.\n\n'
-          'Try passing the controller explicitly.',
+        widget.controller != null,
+        '\n\nNo controller could be found in the provided context.\n\n'
+        'Try passing the controller explicitly.',
       );
       _controller = widget.controller;
     }
@@ -63,10 +63,9 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
     super.dispose();
   }
 
-  void _playPauseListener() =>
-      _controller.value.isPlaying
-          ? _animController.forward()
-          : _animController.reverse();
+  void _playPauseListener() => _controller.value.isPlaying
+      ? _animController.forward()
+      : _animController.reverse();
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +84,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
             onTap: () {
               if (_controller.value.isPlaying) {
                 _controller.startPlaying = false;
-              }
-              else {
+              } else {
                 _controller.startPlaying = true;
                 Future.delayed(Duration(seconds: 1), () {
                   if (!_controller.value.isPlaying) {
@@ -101,11 +99,11 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
             //   color: Colors.white,
             //   size: 60.0,
             // ),
-            child: Icon(
-              Icons.play_circle_fill,
-              color: Colors.white,
-              size: 60.0,
-            ),
+            // child: Icon(
+            //   Icons.play_circle_fill,
+            //   color: Colors.white,
+            //   size: 60.0,
+            // ),
           ),
         ),
       );
