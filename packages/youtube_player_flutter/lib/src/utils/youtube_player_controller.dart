@@ -161,18 +161,17 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   YoutubePlayerController({
     @required this.initialVideoId,
     this.flags = const YoutubePlayerFlags(),
-  })
-      : assert(initialVideoId != null, 'initialVideoId can\'t be null.'),
+  })  : assert(initialVideoId != null, 'initialVideoId can\'t be null.'),
         assert(flags != null),
         super(YoutubePlayerValue());
 
   /// Finds [YoutubePlayerController] in the provided context.
-  factory YoutubePlayerController.of(BuildContext context) =>
-      context
-          .dependOnInheritedWidgetOfExactType<InheritedYoutubePlayer>()
-          ?.controller;
+  factory YoutubePlayerController.of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<InheritedYoutubePlayer>()
+      ?.controller;
 
   _callMethod(String methodString) {
+    print("play from library $methodString");
     if (value.isReady) {
       value.webViewController?.evaluateJavascript(source: methodString);
     } else {
@@ -240,10 +239,9 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
 
   /// Sets the volume of player.
   /// Max = 100 , Min = 0
-  void setVolume(int volume) =>
-      volume >= 0 && volume <= 100
-          ? _callMethod('setVolume($volume)')
-          : throw Exception("Volume should be between 0 and 100");
+  void setVolume(int volume) => volume >= 0 && volume <= 100
+      ? _callMethod('setVolume($volume)')
+      : throw Exception("Volume should be between 0 and 100");
 
   /// Seek to any position. Video auto plays after seeking.
   /// The optional allowSeekAhead parameter determines whether the player will make a new request to the server
@@ -264,8 +262,7 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
     var adjustedHeight = 9 / 16 * screenSize.width;
     setSize(Size(screenSize.width, adjustedHeight));
     _callMethod(
-      'setTopMargin("-${((adjustedHeight - screenSize.height) / 2 * 100)
-          .abs()}px")',
+      'setTopMargin("-${((adjustedHeight - screenSize.height) / 2 * 100).abs()}px")',
     );
   }
 
@@ -300,8 +297,7 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   void reload() => value.webViewController?.reload();
 
   /// Resets the value of [YoutubePlayerController].
-  void reset() =>
-      updateValue(
+  void reset() => updateValue(
         value.copyWith(
           isReady: false,
           isFullScreen: false,
@@ -326,8 +322,7 @@ class InheritedYoutubePlayer extends InheritedWidget {
     Key key,
     @required this.controller,
     @required Widget child,
-  })
-      : assert(controller != null),
+  })  : assert(controller != null),
         super(key: key, child: child);
 
   /// A [YoutubePlayerController] which controls the player.
