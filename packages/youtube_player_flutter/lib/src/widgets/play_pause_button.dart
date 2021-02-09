@@ -43,6 +43,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    print("playpausebutton didChangeDependencies");
     _controller = YoutubePlayerController.of(context);
     if (_controller == null) {
       assert(
