@@ -70,6 +70,10 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   @override
   Widget build(BuildContext context) {
     final _playerState = _controller.value.playerState;
+    print("playpausebutton build ${_playerState}");
+    print("playpausebutton ${_controller.flags.autoPlay}");
+    print("playpausebutton ${_controller.value.isReady}");
+    print("--------------------------------------");
     if ((!_controller.flags.autoPlay && _controller.value.isReady) ||
         _playerState == PlayerState.playing ||
         _playerState == PlayerState.paused) {
@@ -82,12 +86,16 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
           child: InkWell(
             borderRadius: BorderRadius.circular(50.0),
             onTap: () {
+              print("playpausebutton ontap ${_playerState}");
               if (_controller.value.isPlaying) {
+                print("playpausebutton isplaying ${_playerState}");
                 _controller.startPlaying = false;
               } else {
+                print("playpausebutton not isplaying ${_playerState}");
                 _controller.startPlaying = true;
                 Future.delayed(Duration(seconds: 1), () {
                   if (!_controller.value.isPlaying) {
+                    print("playpausebutton play ${_playerState}");
                     _controller.play();
                   }
                 });
