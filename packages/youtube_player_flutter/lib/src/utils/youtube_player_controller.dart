@@ -171,7 +171,6 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
       ?.controller;
 
   _callMethod(String methodString) {
-    print("play from library $methodString");
     if (value.isReady) {
       value.webViewController?.evaluateJavascript(source: methodString);
     } else {

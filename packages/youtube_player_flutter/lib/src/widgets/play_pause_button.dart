@@ -43,7 +43,6 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print("playpausebutton didChangeDependencies");
     _controller = YoutubePlayerController.of(context);
     if (_controller == null) {
       assert(
@@ -71,13 +70,6 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   @override
   Widget build(BuildContext context) {
     final _playerState = _controller.value.playerState;
-    if (_playerState != PlayerState.playing) {
-      print("playpausebutton build ${_playerState}");
-      print("playpausebutton autoplay ${_controller.flags.autoPlay}");
-      print("playpausebutton ready ${_controller.value.isReady}");
-      print("playpausebutton error ${_controller.value.hasError}");
-      print("--------------------------------------");
-    }
     if (_playerState == PlayerState.buffering ||
         _playerState == PlayerState.unStarted ||
         (_controller.value.isReady && _playerState == PlayerState.unknown)) {
@@ -102,16 +94,12 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
           child: InkWell(
             borderRadius: BorderRadius.circular(50.0),
             onTap: () {
-              print("playpausebutton ontap ${_playerState}");
               if (_controller.value.isPlaying) {
-                print("playpausebutton isplaying ${_playerState}");
                 _controller.startPlaying = false;
               } else {
-                print("playpausebutton not isplaying ${_playerState}");
                 _controller.startPlaying = true;
                 Future.delayed(Duration(seconds: 1), () {
                   if (!_controller.value.isPlaying) {
-                    print("playpausebutton play ${_playerState}");
                     _controller.play();
                   }
                 });
