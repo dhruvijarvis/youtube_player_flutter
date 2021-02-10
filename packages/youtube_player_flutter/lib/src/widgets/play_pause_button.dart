@@ -79,7 +79,8 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
       print("--------------------------------------");
     }
     if (_playerState == PlayerState.buffering ||
-        _playerState == PlayerState.unStarted) {
+        _playerState == PlayerState.unStarted ||
+        (_controller.value.isReady && _playerState == PlayerState.unknown)) {
       return widget.bufferIndicator ??
           Container(
             width: 70.0,
