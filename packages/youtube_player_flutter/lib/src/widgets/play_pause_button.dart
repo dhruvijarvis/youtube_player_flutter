@@ -71,11 +71,23 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
   @override
   Widget build(BuildContext context) {
     final _playerState = _controller.value.playerState;
-    print("playpausebutton build ${_playerState}");
-    print("playpausebutton autoplay ${_controller.flags.autoPlay}");
-    print("playpausebutton ready ${_controller.value.isReady}");
-    print("playpausebutton error ${_controller.value.hasError}");
-    print("--------------------------------------");
+    if (_playerState != PlayerState.playing) {
+      print("playpausebutton build ${_playerState}");
+      print("playpausebutton autoplay ${_controller.flags.autoPlay}");
+      print("playpausebutton ready ${_controller.value.isReady}");
+      print("playpausebutton error ${_controller.value.hasError}");
+      print("--------------------------------------");
+    }
+    if (_playerState == PlayerState.buffering) {
+      return widget.bufferIndicator ??
+          Container(
+            width: 70.0,
+            height: 70.0,
+            child: const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Colors.white),
+            ),
+          );
+    }
     if ((!_controller.flags.autoPlay && _controller.value.isReady) ||
         _playerState == PlayerState.playing ||
         _playerState == PlayerState.paused) {
