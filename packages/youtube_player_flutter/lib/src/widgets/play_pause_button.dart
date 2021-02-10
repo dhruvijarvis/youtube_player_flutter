@@ -75,6 +75,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
     print("playpausebutton ready ${_controller.value.isReady}");
     print("playpausebutton error ${_controller.value.hasError}");
     print("--------------------------------------");
+    if (_controller.value.hasError) return const SizedBox();
     if (_playerState == PlayerState.buffering ||
         _playerState == PlayerState.unStarted ||
         (_controller.value.isReady && _playerState == PlayerState.unknown)) {
