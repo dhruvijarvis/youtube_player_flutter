@@ -78,7 +78,8 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
       print("playpausebutton error ${_controller.value.hasError}");
       print("--------------------------------------");
     }
-    if (_playerState == PlayerState.buffering) {
+    if (_playerState == PlayerState.buffering ||
+        _playerState == PlayerState.unStarted) {
       return widget.bufferIndicator ??
           Container(
             width: 70.0,
