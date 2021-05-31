@@ -110,7 +110,7 @@ class _TouchShutterState extends State<TouchShutter> {
               if (seekToPosition >
                   _controller.metadata.duration.inMilliseconds) {
                 seekToPosition =
-                    _controller.metadata.duration.inMilliseconds - 1000;
+                    _controller.metadata.duration.inMilliseconds - 5000;
               }
               setState(() {
                 seekDuration = (delta < 0 ? "- " : "+ ") +
