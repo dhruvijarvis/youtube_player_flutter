@@ -106,17 +106,17 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
                 });
               }
             },
-            // child: AnimatedIcon(
-            //   icon: AnimatedIcons.play_pause,
-            //   progress: _animController.view,
-            //   color: Colors.white,
-            //   size: 60.0,
-            // ),
-            child: Icon(
-              Icons.play_circle_fill,
+            child: AnimatedIcon(
+              icon: AnimatedIcons.play_pause,
+              progress: _animController.view,
               color: Colors.white,
               size: 60.0,
             ),
+            // child: Icon(
+            //   Icons.play_circle_fill,
+            //   color: Colors.white,
+            //   size: 60.0,
+            // ),
           ),
         ),
       );
